@@ -1,70 +1,45 @@
 <aside class="sidebar">
+  <!-- Action -->
   <button class="new-btn" (click)="createFolder.emit()">
     ➕ Nytt
   </button>
 
-  <button class="new-btn">
-    Startsida
-  </button>
-
-  <button class="new-btn">
-    Min enhet
-  </button>
-
-  <button class="new-btn">
-    Datorer
-  </button>
-
-    <button class="new-btn">
-        Delade med mig
+  <!-- Navigation -->
+  <nav class="nav">
+    <button class="nav-item">
+      Startsida
     </button>
 
-    <button class="new-btn">
-        Senaste
+    <button class="nav-item">
+      Min enhet
     </button>
 
-    <button class="new-btn">
-        Stjärnmärkta
+    <button class="nav-item">
+      Datorer
     </button>
 
-    <button class="new-btn">
-        Skräppost
+    <button class="nav-item">
+      Delade med mig
     </button>
 
-    <button class="new-btn">
-        Papperskorg
+    <button class="nav-item">
+      Senaste
     </button>
 
-    <button class="new-btn">
-        Lagring
+    <button class="nav-item">
+      Stjärnmärkta
     </button>
-    
 
-  <nav>
-    <div
-      class="nav-item"
-      [class.active]="currentView === 'home'"
-      (click)="viewChange.emit('home')"
-    >
-      
-    </div>
+    <button class="nav-item">
+      Skräppost
+    </button>
 
-    <div
-      class="nav-item"
-      [class.active]="currentView === 'my-drive'"
-      (click)="viewChange.emit('my-drive')"
-    >
-     
-    </div>
+    <button class="nav-item">
+      Papperskorg
+    </button>
 
-    <div
-      class="nav-item"
-      [class.active]="currentView === 'trash'"
-      (click)="viewChange.emit('trash')"
-    >
-     
-    </div>
+    <button class="nav-item">
+      Lagring
+    </button>
   </nav>
 </aside>
-
-
