@@ -1,31 +1,47 @@
 <div class="layout">
   <!-- Sidebar -->
-  <aside class="sidebar">
-    <button (click)="createFolder()">➕ Nytt</button>
+  <app-sidebar
+    [currentView]="currentView"
+    (viewChange)="setView($event)"
+    (createFolder)="createFolder()"
 
-    <nav>
-      <div
-        class="nav-item"
-        [class.active]="currentView === 'home'"
-        (click)="setView('home')"
-      >
-        Start
-      </div>
+  ></app-sidebar>
 
-      <div
-        class="nav-item"
-        [class.active]="currentView === 'my-drive'"
-        (click)="setView('my-drive')"
-      >
-        Min enhet
-      </div>
+  <!-- Main content -->
+  <main class="content">
+    <!-- START -->
+    <section *ngIf="currentView === 'home'">
+      <h2>Välkommen till Duck Drive</h2>
+      <p>Välj <strong>Min enhet</strong> för att se dina filer.</p>
+    </section>
 
-      <div
-        class="nav-item"
-        [class.active]="currentView === 'trash'"
-        (click)="setView('trash')"
-      >
-        Papperskorg
-      </div>
-    </nav>
-  </aside>
+    <!-- MY DRIVE -->
+    <section *ngIf="currentView === 'my-drive'">
+      <h2>Min enhet</h2>
+
+      <!-- Tomt läge -->
+      <p *ngIf="items.length === 0">
+        Här är det tomt. Klicka på <strong>Nytt</strong> för att skapa en mapp.
+      </p>
+
+      <!-- Lista -->
+      <ul *ngIf="items.length > 0">
+  <li *ngFor="let item of items; let i = index">
+    <span *ngIf="item.type === 'folder'">📁</span>
+    <span *ngIf="item.type === 'file'">📄</span>
+
+    {{ item.name }}
+
+    <button (click)="deleteItem(i)">❌</button>
+  </li>
+</ul>
+
+    </section>
+
+    <!-- TRASH -->
+    <section *ngIf="currentView === 'trash'">
+      <h2>Papperskorg</h2>
+      <p>Inga borttagna filer.</p>
+    </section>
+  </main>
+</div>

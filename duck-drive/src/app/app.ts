@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Sidebar } from './sidebar/sidebar';
 
 type DriveItem = {
   name: string;
@@ -11,13 +12,13 @@ type View = 'home' | 'my-drive' | 'trash';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Sidebar],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
   items: DriveItem[] = [];
-  currentView: View = 'home';
+  currentView: View = 'my-drive';
 
   constructor() {
     const saved = localStorage.getItem('duck-drive-items');
@@ -38,6 +39,11 @@ export class App {
         type: 'folder',
       },
     ];
+    this.save();
+  }
+
+  deleteItem(index: number) {
+    this.items = this.items.filter((_, i) => i !== index);
     this.save();
   }
 

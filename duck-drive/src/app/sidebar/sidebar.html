@@ -1,0 +1,70 @@
+<aside class="sidebar">
+  <button class="new-btn" (click)="createFolder.emit()">
+    ➕ Nytt
+  </button>
+
+  <button class="new-btn">
+    Startsida
+  </button>
+
+  <button class="new-btn">
+    Min enhet
+  </button>
+
+  <button class="new-btn">
+    Datorer
+  </button>
+
+    <button class="new-btn">
+        Delade med mig
+    </button>
+
+    <button class="new-btn">
+        Senaste
+    </button>
+
+    <button class="new-btn">
+        Stjärnmärkta
+    </button>
+
+    <button class="new-btn">
+        Skräppost
+    </button>
+
+    <button class="new-btn">
+        Papperskorg
+    </button>
+
+    <button class="new-btn">
+        Lagring
+    </button>
+    
+
+  <nav>
+    <div
+      class="nav-item"
+      [class.active]="currentView === 'home'"
+      (click)="viewChange.emit('home')"
+    >
+      
+    </div>
+
+    <div
+      class="nav-item"
+      [class.active]="currentView === 'my-drive'"
+      (click)="viewChange.emit('my-drive')"
+    >
+     
+    </div>
+
+    <div
+      class="nav-item"
+      [class.active]="currentView === 'trash'"
+      (click)="viewChange.emit('trash')"
+    >
+     
+    </div>
+  </nav>
+</aside>
+
+
