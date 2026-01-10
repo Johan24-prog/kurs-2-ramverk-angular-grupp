@@ -1,0 +1,31 @@
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <button (click)="createFolder()">➕ Nytt</button>
+
+    <nav>
+      <div
+        class="nav-item"
+        [class.active]="currentView === 'home'"
+        (click)="setView('home')"
+      >
+        Start
+      </div>
+
+      <div
+        class="nav-item"
+        [class.active]="currentView === 'my-drive'"
+        (click)="setView('my-drive')"
+      >
+        Min enhet
+      </div>
+
+      <div
+        class="nav-item"
+        [class.active]="currentView === 'trash'"
+        (click)="setView('trash')"
+      >
+        Papperskorg
+      </div>
+    </nav>
+  </aside>
