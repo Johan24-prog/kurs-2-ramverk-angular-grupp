@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-type View = 'home' | 'my-drive' | 'trash';
+import { View } from '../types';
 
 @Component({
   selector: 'app-sidebar',
