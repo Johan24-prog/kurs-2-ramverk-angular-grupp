@@ -15,6 +15,29 @@
       <p>Välj <strong>Min enhet</strong> för att se dina filer.</p>
     </section>
 
+    <!-- Search Functionality -->
+    <section *ngIf="currentView === 'search'">
+      <h2>Sök</h2>
+      <input
+        type="text"
+        placeholder="Sök i dina filer..."
+        [(ngModel)]="searchQuery"
+        (input)="performSearch()"
+      />
+
+      <div *ngIf="searchResults.length === 0 && searchQuery">
+        <p>Inga resultat hittades för "{{ searchQuery }}".</p>
+      </div>
+
+      <ul *ngIf="searchResults.length > 0">
+        <li *ngFor="let result of searchResults">
+          <span *ngIf="result.type === 'folder'">📁</span>
+          <span *ngIf="result.type === 'file'">📄</span>
+          {{ result.name }}
+        </li>
+      </ul>
+    </section>
+
     <!-- MY DRIVE -->
     <section *ngIf="currentView === 'my-drive'">
       <h2>Min enhet</h2>

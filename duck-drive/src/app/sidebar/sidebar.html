@@ -4,13 +4,21 @@
     ➕ Nytt
   </button>
 
+  <!-- Search Button -->
+  <button class="new-btn" (click)="viewChange.emit('search')" 
+    [class.active]="currentView === 'search'">
+    🔍 Sök
+  </button>
+
   <!-- Navigation -->
   <nav class="nav">
-    <button class="nav-item">
+    <button class="nav-item" (click)="viewChange.emit('home')"
+      [class.active]="currentView === 'home'">
       Startsida
     </button>
 
-    <button class="nav-item">
+    <button class="nav-item" (click)="viewChange.emit('my-drive')"
+      [class.active]="currentView === 'my-drive'">
       Min enhet
     </button>
 
@@ -34,7 +42,8 @@
       Skräppost
     </button>
 
-    <button class="nav-item">
+    <button class="nav-item" (click)="viewChange.emit('trash')"
+      [class.active]="currentView === 'trash'">
       Papperskorg
     </button>
 
