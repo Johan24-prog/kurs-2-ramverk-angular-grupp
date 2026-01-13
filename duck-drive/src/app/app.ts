@@ -1,3 +1,6 @@
+import { RightRail } from './right-rail/right-rail';
+
+
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +11,7 @@ import { View, DriveItem } from './types';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule, Sidebar, Topbar], // 👈 HÄR
+  imports: [CommonModule, FormsModule, Sidebar, Topbar, RightRail], // 👈 HÄR
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
