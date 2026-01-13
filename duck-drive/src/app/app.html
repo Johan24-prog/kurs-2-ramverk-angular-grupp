@@ -4,67 +4,71 @@
     [currentView]="currentView"
     (viewChange)="setView($event)"
     (createFolder)="createFolder()"
-
   ></app-sidebar>
 
-  <!-- Main content -->
-  <main class="content">
-    <!-- START -->
-    <section *ngIf="currentView === 'home'">
-      <h2>Välkommen till Duck Drive</h2>
-      <p>Välj <strong>Min enhet</strong> för att se dina filer.</p>
-    </section>
+  <!-- Right side -->
+  <div class="right">
+    <!-- Topbar -->
+    <app-topbar></app-topbar>
 
-    <!-- Search Functionality -->
-    <section *ngIf="currentView === 'search'">
-      <h2>Sök</h2>
-      <input
-        type="text"
-        placeholder="Sök i dina filer..."
-        [(ngModel)]="searchQuery"
-        (input)="performSearch()"
-      />
+    <!-- Main content -->
+    <main class="content">
+      <!-- START -->
+      <section *ngIf="currentView === 'home'">
+        <h2>Välkommen till Duck Drive</h2>
+        <p>Välj <strong>Min enhet</strong> för att se dina filer.</p>
+      </section>
 
-      <div *ngIf="searchResults.length === 0 && searchQuery">
-        <p>Inga resultat hittades för "{{ searchQuery }}".</p>
-      </div>
+      <!-- Search Functionality -->
+      <section *ngIf="currentView === 'search'">
+        <h2>Sök</h2>
+        <input
+          type="text"
+          placeholder="Sök i dina filer..."
+          [(ngModel)]="searchQuery"
+          (input)="performSearch()"
+        />
 
-      <ul *ngIf="searchResults.length > 0">
-        <li *ngFor="let result of searchResults">
-          <span *ngIf="result.type === 'folder'">📁</span>
-          <span *ngIf="result.type === 'file'">📄</span>
-          {{ result.name }}
-        </li>
-      </ul>
-    </section>
+        <div *ngIf="searchResults.length === 0 && searchQuery">
+          <p>Inga resultat hittades för "{{ searchQuery }}".</p>
+        </div>
 
-    <!-- MY DRIVE -->
-    <section *ngIf="currentView === 'my-drive'">
-      <h2>Min enhet</h2>
+        <ul *ngIf="searchResults.length > 0">
+          <li *ngFor="let result of searchResults">
+            <span *ngIf="result.type === 'folder'">📁</span>
+            <span *ngIf="result.type === 'file'">📄</span>
+            {{ result.name }}
+          </li>
+        </ul>
+      </section>
 
-      <!-- Tomt läge -->
-      <p *ngIf="items.length === 0">
-        Här är det tomt. Klicka på <strong>Nytt</strong> för att skapa en mapp.
-      </p>
+      <!-- MY DRIVE -->
+      <section *ngIf="currentView === 'my-drive'">
+        <h2>Min enhet</h2>
 
-      <!-- Lista -->
-      <ul *ngIf="items.length > 0">
-  <li *ngFor="let item of items; let i = index">
-    <span *ngIf="item.type === 'folder'">📁</span>
-    <span *ngIf="item.type === 'file'">📄</span>
+        <!-- Tomt läge -->
+        <p *ngIf="items.length === 0">
+          Här är det tomt. Klicka på <strong>Nytt</strong> för att skapa en mapp.
+        </p>
 
-    {{ item.name }}
+        <!-- Lista -->
+        <ul *ngIf="items.length > 0">
+          <li *ngFor="let item of items; let i = index">
+            <span *ngIf="item.type === 'folder'">📁</span>
+            <span *ngIf="item.type === 'file'">📄</span>
 
-    <button (click)="deleteItem(i)">❌</button>
-  </li>
-</ul>
+            {{ item.name }}
 
-    </section>
+            <button (click)="deleteItem(i)">❌</button>
+          </li>
+        </ul>
+      </section>
 
-    <!-- TRASH -->
-    <section *ngIf="currentView === 'trash'">
-      <h2>Papperskorg</h2>
-      <p>Inga borttagna filer.</p>
-    </section>
-  </main>
+      <!-- TRASH -->
+      <section *ngIf="currentView === 'trash'">
+        <h2>Papperskorg</h2>
+        <p>Inga borttagna filer.</p>
+      </section>
+    </main>
+  </div>
 </div>

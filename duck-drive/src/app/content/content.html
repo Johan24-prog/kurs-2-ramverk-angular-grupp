@@ -1,1 +1,8 @@
-<p>content works!</p>
+<div class="context-bar">
+  <!-- sök + filter -->
+</div>
+
+<main class="content">
+  <p *ngIf="currentView === 'home'">Välkommen</p>
+  <p *ngIf="currentView === 'my-drive'">Min enhet</p>
+</main>

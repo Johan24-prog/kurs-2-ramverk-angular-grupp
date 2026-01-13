@@ -8,12 +8,12 @@ body {
     width: 256px;
     height: 100vh;
     background-color: #f8f9fa;
-    padding: 12px;
+   
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    border-right: 1px solid #e0e0e0
+   
 }
 .sidebar .new-btn {
   display: inline-flex;          
@@ -167,6 +167,25 @@ body {
     background-color: #f1f3f4;
   }
 }
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  padding: 1px 1px; 
+  gap: px;
+}
+
+
+.sidebar-logo img {
+  height: 60px;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 30px;
+  font-weight: 500;
+  color: #3c4043;
+  white-space: nowrap;
+ } 
 
 
      

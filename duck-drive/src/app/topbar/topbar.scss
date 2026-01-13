@@ -1,0 +1,42 @@
+.topbar {
+  height: 64px;
+  background-color: #f8f9fa;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* left / center / right layout */
+.topbar-left {
+  width: 200px; /* reserverad plats */
+}
+
+.topbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.topbar-right {
+  display: flex;
+  gap: 8px;
+}
+
+/* ikon-knappar */
+.icon-btn {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e8eaed;
+  }
+}

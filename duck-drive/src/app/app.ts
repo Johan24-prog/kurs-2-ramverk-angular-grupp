@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Sidebar } from './sidebar/sidebar';
+import { Topbar } from './topbar/topbar';
 import { View, DriveItem } from './types';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule, Sidebar],
+  imports: [CommonModule, FormsModule, Sidebar, Topbar], // 👈 HÄR
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
