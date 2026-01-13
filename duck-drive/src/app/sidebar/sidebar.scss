@@ -5,20 +5,21 @@ body {
 }
 
 .sidebar {
-    width: 256px;
     height: 100vh;
-    background-color: #f8f9fa;
+    background-color: #f1f3f4;
    
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+     padding-left: 20px;
+    
    
 }
 .sidebar .new-btn {
   display: inline-flex;          
   align-items: center;
-  gap: 8px;
+  gap: px;
 
   height: 60px;                  
   padding: 0 30px;               
@@ -64,7 +65,7 @@ body {
 
   width: 100%;
   padding: 10px 12px;
-  border-radius: 0 24px 24px 0;
+  border-radius: 999px;
 
   background: none;
   border: none;
@@ -170,7 +171,7 @@ body {
 .sidebar-logo {
   display: flex;
   align-items: center;
-  padding: 1px 1px; 
+  
   gap: px;
 }
 
