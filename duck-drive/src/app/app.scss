@@ -77,7 +77,7 @@ app-sidebar {
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: 0;     // 🔥 detta är rätt, INTE 100vh
+  min-height: 0;     
   background: #f1f3f4;
 }
 
@@ -105,7 +105,7 @@ app-sidebar {
   width: 16px;
   height: 16px;
 
-  background: #f1f3f4;            // SAMMA som right rail
+  background: #f1f3f4;            
   border-top-left-radius: 16px;
 }
 
