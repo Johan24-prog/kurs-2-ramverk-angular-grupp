@@ -78,6 +78,31 @@
             <p *ngIf="trashItems.length === 0">
               Inga borttagna filer.
             </p>
+
+           <ul *ngIf="trashItems.length > 0" class="trash-list">
+           <li *ngFor="let item of trashItems; let i = index" class="trash-item">
+            <div class="trash-item-info">
+                  <span *ngIf="item.type === 'folder'">📁</span>
+                  <span *ngIf="item.type === 'file'">📄</span>
+                  <span>{{ item.name }}</span>
+                  <span class="trash-item-date">
+                    (Borttagen {{ formatDate(item.deletedAt) }})
+                  </span>
+                </div>
+                <div class="trash-item-actions">
+                  <button 
+                    (click)="restoreItem(i)"
+                    class="restore-btn">
+                    Återställ
+                  </button>
+                  <button 
+                    (click)="permanentDeleteItem(i)"
+                    class="permanent-delete-btn">
+                    Ta bort permanent
+                  </button>
+                </div>
+              </li>
+            </ul>
           </section>
           
           <!-- COMPUTERS -->
