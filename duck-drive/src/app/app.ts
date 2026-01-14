@@ -85,6 +85,11 @@ restoreItem(index: number) {
   this.save();
   this.saveTrash();
 }
+permanentDeleteItem(index: number) {
+  // Ta bort permanent från papperskorgen
+  this.trashItems = this.trashItems.filter((_, i) => i !== index);
+  this.saveTrash();
+}
 
   performSearch() {
     if (this.searchQuery.trim() === '') {
