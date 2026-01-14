@@ -90,6 +90,11 @@ permanentDeleteItem(index: number) {
   this.trashItems = this.trashItems.filter((_, i) => i !== index);
   this.saveTrash();
 }
+emptyTrash() {
+  // Töm hela papperskorgen
+  this.trashItems = [];
+  this.saveTrash();
+}
 
   performSearch() {
     if (this.searchQuery.trim() === '') {
