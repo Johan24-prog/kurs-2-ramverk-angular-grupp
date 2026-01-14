@@ -75,6 +75,9 @@
                 Töm papperskorgen
               </button>
             </div>
+            <p *ngIf="trashItems.length === 0">
+              Inga borttagna filer.
+            </p>
           </section>
           
           <!-- COMPUTERS -->
