@@ -75,6 +75,13 @@
             <h2>Datorer</h2>
             <p>Inga datorer är kopplade till ditt konto.</p>
           </section>
+
+          <!-- SHARED -->
+          <section *ngIf="currentView === 'shared'">
+            <h2>Delade med mig</h2>
+            <p>Inga filer eller mappar har delats med dig än.</p>
+          </section>
+
         </main>
       </div>
 
