@@ -17,36 +17,145 @@ import { View, DriveItem } from './types';
 })
 export class App {
   items: DriveItem[] = [];
+  trashItems: DriveItem[] = [];
   currentView: View = 'my-drive';
   searchQuery: string = '';
   searchResults: DriveItem[] = [];
 
   constructor() {
-    const saved = localStorage.getItem('duck-drive-items');
-    if (saved) {
+  const saved = localStorage.getItem('duck-drive-items');
+  if (saved) {
+    try {
       this.items = JSON.parse(saved);
+      for (let i = 0; i < this.items.length; i++) {
+        if (!this.items[i].id) {
+          this.items[i].id = this.generateId();
+        }
+      }
+      this.save();
+    } catch (error) {
+      console.error('Kunde inte läsa sparade filer från localStorage', error);
+      this.items = [];
+      localStorage.removeItem('duck-drive-items');
     }
   }
+  const savedTrash = localStorage.getItem('duck-drive-trash');
+  if (savedTrash) {
+    try {
+      this.trashItems = JSON.parse(savedTrash);
+    } catch (error) {
+      console.error('Kunde inte läsa papperskorgen från localStorage', error);
+      this.trashItems = [];
+      localStorage.removeItem('duck-drive-trash');
+    }
+  }
+}
 
   setView(view: View) {
     this.currentView = view;
   }
 
   createFolder() {
-    this.items = [
-      ...this.items,
-      {
-        name: 'Nytt',
-        type: 'folder',
-      },
-    ];
-    this.save();
-  }
+  const newFolder: DriveItem = {
+    id: this.generateId(),
+    name: 'Nytt',
+    type: 'folder',
+  };
+  this.items = [...this.items, newFolder];
+  this.save();
+}
 
-  deleteItem(index: number) {
-    this.items = this.items.filter((_, i) => i !== index);
-    this.save();
+  deleteItem(id: string) {
+  const item = this.items.find(i => i.id === id);
+  if (!item) return;
+  
+  // Lägg till deletedAt timestamp
+  const deletedItem: DriveItem = {
+    ...item,
+    deletedAt: Date.now(),
+  };
+  // Flytta till papperskorgen
+  this.trashItems = [...this.trashItems, deletedItem];
+  // Ta bort från items
+  this.items = this.items.filter(i => i.id !== id);
+  this.save();
+  this.saveTrash();
+}
+
+restoreItem(index: number) {
+  const item = this.trashItems[index];
+  // Ta bort deletedAt
+  const restoredItem: DriveItem = {
+    id: item.id,
+    name: item.name,
+    type: item.type,
+  };
+  // Lägg tillbaka i items
+  this.items = [...this.items, restoredItem];
+  // Ta bort från trashItems
+  this.trashItems = this.trashItems.filter((_, i) => i !== index);
+  this.save();
+  this.saveTrash();
+}
+permanentDeleteItem(index: number) {
+  // Ta bort permanent från papperskorgen
+  this.trashItems = this.trashItems.filter((_, i) => i !== index);
+  this.saveTrash();
+}
+emptyTrash() {
+  // Töm hela papperskorgen
+  this.trashItems = [];
+  this.saveTrash();
+}
+
+//Skapar unika identifierare för varje fil/mapp
+private generateId(): string {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
+
+private saveTrash() {
+  localStorage.setItem(
+    'duck-drive-trash',
+    JSON.stringify(this.trashItems)
+  );
+}
+
+
+formatDate(timestamp?: number): string {
+  if (!timestamp) return '';
+  const date = new Date(timestamp);
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+  // Mindre än 1 minut sedan
+  if (diffInSeconds < 60) {
+    return 'just nu';
   }
+  // Mindre än 1 timme sedan
+  if (diffInSeconds < 3600) {
+    const minutes = Math.floor(diffInSeconds / 60);
+    return `för ${minutes} ${minutes === 1 ? 'minut' : 'minuter'} sedan`;
+  }
+  // Mindre än 24 timmar sedan
+  if (diffInSeconds < 86400) {
+    const hours = Math.floor(diffInSeconds / 3600);
+    return `för ${hours} ${hours === 1 ? 'timme' : 'timmar'} sedan`;
+  }
+  // Mindre än 7 dagar sedan
+  if (diffInSeconds < 604800) {
+    const days = Math.floor(diffInSeconds / 86400);
+    return `för ${days} ${days === 1 ? 'dag' : 'dagar'} sedan`;
+  }
+  // Visa datum för äldre filer
+  return date.toLocaleDateString('sv-SE', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
 
   performSearch() {
     if (this.searchQuery.trim() === '') {

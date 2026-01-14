@@ -29,23 +29,28 @@
       Min enhet
     </button>
 
-    <button class="nav-item">
+     <button class="nav-item" (click)="viewChange.emit('computers')"
+      [class.active]="currentView === 'computers'">
       Datorer
     </button>
 
-    <button class="nav-item">
+    <button class="nav-item" (click)="viewChange.emit('shared')"
+      [class.active]="currentView === 'shared'">
       Delade med mig
     </button>
 
-    <button class="nav-item">
+   <button class="nav-item" (click)="viewChange.emit('recent')"
+      [class.active]="currentView === 'recent'">
       Senaste
     </button>
 
-    <button class="nav-item">
+    <button class="nav-item" (click)="viewChange.emit('starred')"
+      [class.active]="currentView === 'starred'">
       Stjärnmärkta
     </button>
 
-    <button class="nav-item">
+    <button class="nav-item" (click)="viewChange.emit('spam')"
+      [class.active]="currentView === 'spam'">
       Skräppost
     </button>
 
@@ -54,11 +59,12 @@
       Papperskorg
     </button>
 
-    <button class="nav-item">
+     <button class="nav-item" (click)="viewChange.emit('storage')"
+      [class.active]="currentView === 'storage'">
       Lagring
     </button>
   </nav>
-  <button class="sidebar-storage-btn">
+   <button class="sidebar-storage-btn" (click)="viewChange.emit('storage')">
   Få mer lagring
 </button>
     

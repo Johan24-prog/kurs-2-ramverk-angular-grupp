@@ -53,21 +53,112 @@
             </p>
 
             <ul *ngIf="items.length > 0">
-              <li *ngFor="let item of items; let i = index">
+              <li *ngFor="let item of items">
                 <span *ngIf="item.type === 'folder'">📁</span>
                 <span *ngIf="item.type === 'file'">📄</span>
 
                 {{ item.name }}
 
-                <button (click)="deleteItem(i)">❌</button>
+                <button (click)="deleteItem(item.id)">❌</button>
               </li>
             </ul>
           </section>
 
           <!-- TRASH -->
           <section *ngIf="currentView === 'trash'">
-            <h2>Papperskorg</h2>
-            <p>Inga borttagna filer.</p>
+            <div class="trash-header">
+              <h2>Papperskorg</h2>
+               <button 
+                *ngIf="trashItems.length > 0"
+                (click)="emptyTrash()"
+                class="empty-trash-btn">
+                Töm papperskorgen
+              </button>
+            </div>
+            <p *ngIf="trashItems.length === 0">
+              Inga borttagna filer.
+            </p>
+
+           <ul *ngIf="trashItems.length > 0" class="trash-list">
+           <li *ngFor="let item of trashItems; let i = index" class="trash-item">
+            <div class="trash-item-info">
+                  <span *ngIf="item.type === 'folder'">📁</span>
+                  <span *ngIf="item.type === 'file'">📄</span>
+                  <span>{{ item.name }}</span>
+                  <span class="trash-item-date">
+                    (Borttagen {{ formatDate(item.deletedAt) }})
+                  </span>
+                </div>
+                <div class="trash-item-actions">
+                  <button 
+                    (click)="restoreItem(i)"
+                    class="restore-btn">
+                    Återställ
+                  </button>
+                  <button 
+                    (click)="permanentDeleteItem(i)"
+                    class="permanent-delete-btn">
+                    Ta bort permanent
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </section>
+          
+          <!-- COMPUTERS -->
+          <section *ngIf="currentView === 'computers'">
+            <h2>Datorer</h2>
+            <p>Inga datorer är kopplade till ditt konto.</p>
+          </section>
+
+          <!-- SHARED -->
+          <section *ngIf="currentView === 'shared'">
+            <h2>Delade med mig</h2>
+            <p>Inga filer eller mappar har delats med dig än.</p>
+          </section>
+
+          <!-- RECENT -->
+          <section *ngIf="currentView === 'recent'">
+            <h2>Senaste</h2>
+            <p *ngIf="items.length === 0">
+              Inga senaste filer att visa.
+            </p>
+            <ul *ngIf="items.length > 0">
+              <li *ngFor="let item of items; let i = index">
+                <span *ngIf="item.type === 'folder'">📁</span>
+                <span *ngIf="item.type === 'file'">📄</span>
+                {{ item.name }}
+              </li>
+            </ul>
+          </section>
+
+           <!-- STARRED -->
+          <section *ngIf="currentView === 'starred'">
+            <h2>Stjärnmärkta</h2>
+            <p>Inga stjärnmärkta filer eller mappar.</p>
+          </section>
+
+          <!-- SPAM -->
+          <section *ngIf="currentView === 'spam'">
+            <h2>Skräppost</h2>
+            <p>Inga skräppostfiler.</p>
+          </section>
+
+          <!-- STORAGE -->
+          <section *ngIf="currentView === 'storage'">
+            <h2>Lagring</h2>
+            <div>
+              <p>Din lagring:</p>
+              <p *ngIf="items.length === 0">
+                <strong>0 filer</strong> – Du har lagring kvar.
+              </p>
+              <p *ngIf="items.length > 0">
+                <strong>{{ items.length }} filer/mappar</strong> i din Duck Drive.
+              </p>
+            </div>
+            <button style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #1a73e8; color: white; border: none; border-radius: 4px; cursor: pointer;">
+              Få mer lagring
+            </button>
           </section>
         </main>
       </div>
