@@ -23,21 +23,33 @@ export class App {
   searchResults: DriveItem[] = [];
 
   constructor() {
-    const saved = localStorage.getItem('duck-drive-items');
-    if (saved) {
+  const saved = localStorage.getItem('duck-drive-items');
+  if (saved) {
+    try {
       this.items = JSON.parse(saved);
-      // Lägg till ID för gamla items som saknar det (bakåtkompatibilitet)
-      this.items = this.items.map(item => ({
-        ...item,
-        id: item.id || this.generateId(),
-      }));
-      this.save(); // Spara med ID:n
-    }
-    const savedTrash = localStorage.getItem('duck-drive-trash');
-    if (savedTrash) {
-      this.trashItems = JSON.parse(savedTrash);
+      for (let i = 0; i < this.items.length; i++) {
+        if (!this.items[i].id) {
+          this.items[i].id = this.generateId();
+        }
+      }
+      this.save();
+    } catch (error) {
+      console.error('Kunde inte läsa sparade filer från localStorage', error);
+      this.items = [];
+      localStorage.removeItem('duck-drive-items');
     }
   }
+  const savedTrash = localStorage.getItem('duck-drive-trash');
+  if (savedTrash) {
+    try {
+      this.trashItems = JSON.parse(savedTrash);
+    } catch (error) {
+      console.error('Kunde inte läsa papperskorgen från localStorage', error);
+      this.trashItems = [];
+      localStorage.removeItem('duck-drive-trash');
+    }
+  }
+}
 
   setView(view: View) {
     this.currentView = view;
