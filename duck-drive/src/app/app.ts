@@ -17,6 +17,7 @@ import { View, DriveItem } from './types';
 })
 export class App {
   items: DriveItem[] = [];
+  trashItems: DriveItem[] = [];
   currentView: View = 'my-drive';
   searchQuery: string = '';
   searchResults: DriveItem[] = [];
