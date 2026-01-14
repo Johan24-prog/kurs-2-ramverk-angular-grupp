@@ -109,6 +109,41 @@ private saveTrash() {
 }
 
 
+formatDate(timestamp?: number): string {
+  if (!timestamp) return '';
+  const date = new Date(timestamp);
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+  // Mindre än 1 minut sedan
+  if (diffInSeconds < 60) {
+    return 'just nu';
+  }
+  // Mindre än 1 timme sedan
+  if (diffInSeconds < 3600) {
+    const minutes = Math.floor(diffInSeconds / 60);
+    return `för ${minutes} ${minutes === 1 ? 'minut' : 'minuter'} sedan`;
+  }
+  // Mindre än 24 timmar sedan
+  if (diffInSeconds < 86400) {
+    const hours = Math.floor(diffInSeconds / 3600);
+    return `för ${hours} ${hours === 1 ? 'timme' : 'timmar'} sedan`;
+  }
+  // Mindre än 7 dagar sedan
+  if (diffInSeconds < 604800) {
+    const days = Math.floor(diffInSeconds / 86400);
+    return `för ${days} ${days === 1 ? 'dag' : 'dagar'} sedan`;
+  }
+  // Visa datum för äldre filer
+  return date.toLocaleDateString('sv-SE', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
 
   performSearch() {
     if (this.searchQuery.trim() === '') {
