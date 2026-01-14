@@ -44,15 +44,14 @@ export class App {
   }
 
   createFolder() {
-    this.items = [
-      ...this.items,
-      {
-        name: 'Nytt',
-        type: 'folder',
-      },
-    ];
-    this.save();
-  }
+  const newFolder: DriveItem = {
+    id: this.generateId(),
+    name: 'Nytt',
+    type: 'folder',
+  };
+  this.items = [...this.items, newFolder];
+  this.save();
+}
 
   deleteItem(index: number) {
     this.items = this.items.filter((_, i) => i !== index);
