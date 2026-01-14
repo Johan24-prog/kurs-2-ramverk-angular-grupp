@@ -101,6 +101,13 @@ private generateId(): string {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
+private saveTrash() {
+  localStorage.setItem(
+    'duck-drive-trash',
+    JSON.stringify(this.trashItems)
+  );
+}
+
 
 
   performSearch() {
