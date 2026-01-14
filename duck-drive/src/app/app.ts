@@ -53,10 +53,22 @@ export class App {
   this.save();
 }
 
-  deleteItem(index: number) {
-    this.items = this.items.filter((_, i) => i !== index);
-    this.save();
-  }
+  deleteItem(id: string) {
+  const item = this.items.find(i => i.id === id);
+  if (!item) return;
+  
+  // Lägg till deletedAt timestamp
+  const deletedItem: DriveItem = {
+    ...item,
+    deletedAt: Date.now(),
+  };
+  // Flytta till papperskorgen
+  this.trashItems = [...this.trashItems, deletedItem];
+  // Ta bort från items
+  this.items = this.items.filter(i => i.id !== id);
+  this.save();
+  this.saveTrash();
+}
 
   performSearch() {
     if (this.searchQuery.trim() === '') {
