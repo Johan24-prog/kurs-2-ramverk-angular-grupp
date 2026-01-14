@@ -102,6 +102,29 @@
             <h2>Stjärnmärkta</h2>
             <p>Inga stjärnmärkta filer eller mappar.</p>
           </section>
+
+          <!-- SPAM -->
+          <section *ngIf="currentView === 'spam'">
+            <h2>Skräppost</h2>
+            <p>Inga skräppostfiler.</p>
+          </section>
+
+          <!-- STORAGE -->
+          <section *ngIf="currentView === 'storage'">
+            <h2>Lagring</h2>
+            <div>
+              <p>Din lagring:</p>
+              <p *ngIf="items.length === 0">
+                <strong>0 filer</strong> – Du har lagring kvar.
+              </p>
+              <p *ngIf="items.length > 0">
+                <strong>{{ items.length }} filer/mappar</strong> i din Duck Drive.
+              </p>
+            </div>
+            <button style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #1a73e8; color: white; border: none; border-radius: 4px; cursor: pointer;">
+              Få mer lagring
+            </button>
+          </section>
         </main>
       </div>
 
