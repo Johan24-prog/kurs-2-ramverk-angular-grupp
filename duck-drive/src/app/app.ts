@@ -70,6 +70,22 @@ export class App {
   this.saveTrash();
 }
 
+restoreItem(index: number) {
+  const item = this.trashItems[index];
+  // Ta bort deletedAt
+  const restoredItem: DriveItem = {
+    id: item.id,
+    name: item.name,
+    type: item.type,
+  };
+  // Lägg tillbaka i items
+  this.items = [...this.items, restoredItem];
+  // Ta bort från trashItems
+  this.trashItems = this.trashItems.filter((_, i) => i !== index);
+  this.save();
+  this.saveTrash();
+}
+
   performSearch() {
     if (this.searchQuery.trim() === '') {
       this.searchResults = [];
