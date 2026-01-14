@@ -53,21 +53,28 @@
             </p>
 
             <ul *ngIf="items.length > 0">
-              <li *ngFor="let item of items; let i = index">
+              <li *ngFor="let item of items">
                 <span *ngIf="item.type === 'folder'">📁</span>
                 <span *ngIf="item.type === 'file'">📄</span>
 
                 {{ item.name }}
 
-                <button (click)="deleteItem(i)">❌</button>
+                <button (click)="deleteItem(item.id)">❌</button>
               </li>
             </ul>
           </section>
 
           <!-- TRASH -->
           <section *ngIf="currentView === 'trash'">
-            <h2>Papperskorg</h2>
-            <p>Inga borttagna filer.</p>
+            <div class="trash-header">
+              <h2>Papperskorg</h2>
+               <button 
+                *ngIf="trashItems.length > 0"
+                (click)="emptyTrash()"
+                class="empty-trash-btn">
+                Töm papperskorgen
+              </button>
+            </div>
           </section>
           
           <!-- COMPUTERS -->
