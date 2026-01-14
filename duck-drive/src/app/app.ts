@@ -26,6 +26,16 @@ export class App {
     const saved = localStorage.getItem('duck-drive-items');
     if (saved) {
       this.items = JSON.parse(saved);
+      // Lägg till ID för gamla items som saknar det (bakåtkompatibilitet)
+      this.items = this.items.map(item => ({
+        ...item,
+        id: item.id || this.generateId(),
+      }));
+      this.save(); // Spara med ID:n
+    }
+    const savedTrash = localStorage.getItem('duck-drive-trash');
+    if (savedTrash) {
+      this.trashItems = JSON.parse(savedTrash);
     }
   }
 
