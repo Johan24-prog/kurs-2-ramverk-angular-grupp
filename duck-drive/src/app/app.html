@@ -82,6 +82,20 @@
             <p>Inga filer eller mappar har delats med dig än.</p>
           </section>
 
+          <!-- RECENT -->
+          <section *ngIf="currentView === 'recent'">
+            <h2>Senaste</h2>
+            <p *ngIf="items.length === 0">
+              Inga senaste filer att visa.
+            </p>
+            <ul *ngIf="items.length > 0">
+              <li *ngFor="let item of items; let i = index">
+                <span *ngIf="item.type === 'folder'">📁</span>
+                <span *ngIf="item.type === 'file'">📄</span>
+                {{ item.name }}
+              </li>
+            </ul>
+          </section>
         </main>
       </div>
 
