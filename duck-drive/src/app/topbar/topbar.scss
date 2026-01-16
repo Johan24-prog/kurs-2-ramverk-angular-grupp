@@ -1,56 +1,66 @@
 .topbar {
   height: 64px;
-  background-color:#f1f3f4;
-
+  background: #f1f3f4;
   display: flex;
   align-items: center;
-   justify-content: space-between;
+  justify-content: space-between;
+  padding: 0 16px;
 
-  
-  
-  
+  /* Subtil separation från innehållet */
+  border-bottom: 1px solid #dadce0;
 }
 
-/* left / center / right layout */
-.topbar-left {
-  width: 200px; /* reserverad plats */
-}
-
-.topbar-center {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
+/* Högersektion */
 .topbar-right {
   margin-left: auto;
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 6px;
 }
 
-/* ikon-knappar */
+/* ======== IKON-KNAPPAR ======== */
 .icon-btn {
-  width: 32px;
-  height: 32px;
-
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
   background: transparent;
-
   cursor: pointer;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background 0.12s ease;
+
   &:hover {
-    background-color: #e8eaed;
+    background: #e8eaed;
+  }
+
+  &:active {
+    background: #dadce0;
+  }
+
+  .material-icons {
+    font-size: 22px;
+    color: #5f6368;
   }
 }
-.topbar img {
-  height: 32px;
-  width: auto;         // behåller proportioner
-}
+
+/* ======== PROFILBILD ======== */
 .profile-img {
-  height: 32px;
-  width: auto;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  padding: 5px;
+  object-fit: cover;
+  cursor: pointer;
+
+  /* Ger samma känsla som Drive */
+  border: 1px solid #dadce0;
+
+  transition: background 0.12s ease;
+
+  &:hover {
+    background: #e8eaed;
+  }
 }
