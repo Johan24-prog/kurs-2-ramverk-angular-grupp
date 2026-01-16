@@ -1,71 +1,84 @@
 <aside class="sidebar">
   <div class="sidebar-logo">
-    
-<img src="duck-drive-icon.png" alt="Duck Drive" />
-<span class="logo-text">Duck Drive</span>
+    <img src="duck-drive-icon.png" alt="Duck Drive" />
+    <span class="logo-text">Duck Drive</span>
+  </div>
 
-
-</div>
   <!-- Action -->
   <button class="new-btn" (click)="createFolder.emit()">
-    ➕ Nytt
+    <span class="material-icons">add</span>
+    Nytt
   </button>
 
   <!-- Search Button -->
-  <button class="sidebar-search-btn" (click)="viewChange.emit('search')" 
+  <button 
+    class="sidebar-search-btn" 
+    (click)="viewChange.emit('search')" 
     [class.active]="currentView === 'search'">
-    🔍 Sök
+
+    <span class="material-icons">search</span>
+    Sök
   </button>
 
   <!-- Navigation -->
   <nav class="nav">
     <button class="nav-item" (click)="viewChange.emit('home')"
       [class.active]="currentView === 'home'">
+      <span class="material-icons">home</span>
       Startsida
     </button>
 
     <button class="nav-item" (click)="viewChange.emit('my-drive')"
       [class.active]="currentView === 'my-drive'">
+      <span class="material-icons">folder</span>
       Min enhet
     </button>
 
-     <button class="nav-item" (click)="viewChange.emit('computers')"
+    <button class="nav-item" (click)="viewChange.emit('computers')"
       [class.active]="currentView === 'computers'">
+      <span class="material-icons">computer</span>
       Datorer
     </button>
 
     <button class="nav-item" (click)="viewChange.emit('shared')"
       [class.active]="currentView === 'shared'">
+      <span class="material-icons">group</span>
       Delade med mig
     </button>
 
-   <button class="nav-item" (click)="viewChange.emit('recent')"
+    <button class="nav-item" (click)="viewChange.emit('recent')"
       [class.active]="currentView === 'recent'">
+      <span class="material-icons">schedule</span>
       Senaste
     </button>
 
     <button class="nav-item" (click)="viewChange.emit('starred')"
       [class.active]="currentView === 'starred'">
+      <span class="material-icons">star_outline</span>
       Stjärnmärkta
     </button>
 
     <button class="nav-item" (click)="viewChange.emit('spam')"
       [class.active]="currentView === 'spam'">
+      <span class="material-icons">report</span>
       Skräppost
     </button>
 
     <button class="nav-item" (click)="viewChange.emit('trash')"
       [class.active]="currentView === 'trash'">
+      <span class="material-icons">delete</span>
       Papperskorg
     </button>
 
-     <button class="nav-item" (click)="viewChange.emit('storage')"
+    <button class="nav-item" (click)="viewChange.emit('storage')"
       [class.active]="currentView === 'storage'">
+      <span class="material-icons">storage</span>
       Lagring
     </button>
   </nav>
-   <button class="sidebar-storage-btn" (click)="viewChange.emit('storage')">
-  Få mer lagring
-</button>
-    
+
+  <button class="sidebar-storage-btn" (click)="viewChange.emit('storage')">
+    <span class="material-icons">upgrade</span>
+    Få mer lagring
+  </button>
 </aside>
