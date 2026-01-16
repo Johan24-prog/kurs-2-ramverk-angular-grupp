@@ -22,7 +22,7 @@
           </section>
 
           <!-- Search Functionality -->
-          <section *ngIf="currentView === 'search'">
+          <section *ngIf="currentView === 'search'" class="search-view">
             <h2>Sök</h2>
             <input
               type="text"
@@ -145,7 +145,7 @@
           </section>
 
           <!-- STORAGE -->
-          <section *ngIf="currentView === 'storage'">
+          <section *ngIf="currentView === 'storage'" class="storage-view">
             <h2>Lagring</h2>
             <div>
               <p>Din lagring:</p>
