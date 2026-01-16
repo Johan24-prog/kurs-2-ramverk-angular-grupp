@@ -4,61 +4,107 @@ body {
   margin: 0;
 }
 
+/* ========== SIDEBAR BAS ========== */
 .sidebar {
-    height: 100vh;
-    background-color: #f1f3f4;
-   
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-     padding-left: 20px;
-    
-   
-}
-.sidebar .new-btn {
-  display: inline-flex;          
-  align-items: center;
-  gap: px;
+  height: 100vh;
+  width: 260px;
+  background-color: #f1f3f4;
+  box-sizing: border-box;
 
-  height: 60px;                  
-  padding: 0 30px;               
+  display: flex;
+  flex-direction: column;
+  padding: 12px 8px;
+  gap: 8px;
+}
+
+/* ========== LOGO (TOPPEN) ========== */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px 12px 12px;
+}
+
+.sidebar-logo img {
+  height: 36px;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: #202124;
+}
+
+/* ========== “NYTT”-KNAPP (DRIVE-STIL) ========== */
+.sidebar .new-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 48px;
+  padding: 0 20px;
 
   background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 18px;            
+  border: 1px solid #dadce0;
+  border-radius: 24px;
 
   font-size: 14px;
   font-weight: 500;
   color: #1f1f1f;
 
   cursor: pointer;
-
-  width: fit-content;             
-  align-self: flex-start;         
+  align-self: flex-start;
 
   box-shadow:
     0 1px 2px rgba(60, 64, 67, 0.3),
     0 1px 3px rgba(60, 64, 67, 0.15);
 
   transition: background-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    background-color: #f1f3f4;
+  }
 }
 
-.sidebar .new-btn:hover {
-  background-color: #f1f3f4;
+/* ========== SÖK-KNAPP ========== */
+.sidebar-search-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 36px;
+  padding: 0 12px;
+  margin-top: 4px;
+
+  border-radius: 18px;
+  border: none;
+  background-color: transparent;
+
+  font-size: 14px;
+  color: #5f6368;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e8f0fe;
+  }
+
+  &.active {
+    background-color: #e8f0fe;
+    color: #1a73e8;
+    font-weight: 500;
+  }
 }
 
-
-
-/* ===== Navigation ===== */
+/* ========== NAVIGATION ========== */
 .nav {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  margin-top: 8px;
 }
 
-
-/* ===== Navigation items ===== */
+/* ========== NAV-ITEMS ========== */
 .nav-item {
   display: flex;
   align-items: center;
@@ -73,121 +119,45 @@ body {
   font-size: 14px;
   color: #3c4043;
   text-align: left;
-
   cursor: pointer;
-    transition: background-color 0.15s ease;
 
-    &:hover {
-        background-color: #e8f0fe;
-    }
+  transition: background-color 0.15s ease;
 
-    &.active {
+  &:hover {
+    background-color: #e8f0fe;
+  }
+
+  &.active {
     background-color: #d2e3fc;
     font-weight: 500;
     color: #174ea6;
   }
-
 }
+
+/* ========== “FÅ MER LAGRING”-KNAPP ========== */
+.sidebar-storage-btn {
+  margin-top: auto; // trycker ner den längst ner
+  display: flex;
+  align-items: center;
+
+  height: 36px;
+  padding: 0 12px;
+
+  border-radius: 18px;
+  border: none;
+  background-color: transparent;
+
+  font-size: 14px;
+  color: #5f6368;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e8f0fe;
+  }
+}
+
+/* Säkerställ layout med resten av appen */
 .layout {
   display: flex;
   min-height: 100vh;
 }
-.sidebar-search-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  height: 32px;
-  padding: 0 14px;
-
-  border-radius: 16px;
-  border: none;
-  background-color: transparent;
-
-  font-size: 14px;
-  color: #5f6368;
-
-  cursor: pointer;
-
-  &:hover {
-    background-color: #f1f3f4;
-  }
-
-  &.active {
-    background-color: #e8f0fe;
-    color: #1a73e8;
-    font-weight: 500;
-  }
-}
-.sidebar-search-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  height: 32px;
-  padding: 0 14px;
-
-  border-radius: 16px;
-  border: none;
-  background-color: transparent;
-
-  font-size: 14px;
-  color: #5f6368;
-
-  cursor: pointer;
-
-  &:hover {
-    background-color: #e8f0fe;
-  }
-
-  &.active {
-    background-color: #e8f0fe;
-    color: #1a73e8;
-    font-weight: 500;
-  }
-  
-}
-.sidebar-storage-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  height: 32px;
-  padding: 0 14px;
-
-  border-radius: 16px;
-  border: none;
-  background-color: transparent;
-
-  font-size: 14px;
-  color: #5f6368;
-
-  cursor: pointer;
-
-  &:hover {
-    background-color: #f1f3f4;
-  }
-}
-.sidebar-logo {
-  display: flex;
-  align-items: center;
-  
-  gap: px;
-}
-
-
-.sidebar-logo img {
-  height: 60px;
-  width: auto;
-}
-
-.logo-text {
-  font-size: 30px;
-  font-weight: 500;
-  color: #3c4043;
-  white-space: nowrap;
- } 
-
-
-     
-    
