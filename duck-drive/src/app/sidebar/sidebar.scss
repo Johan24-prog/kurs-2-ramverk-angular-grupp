@@ -161,3 +161,35 @@ body {
   display: flex;
   min-height: 100vh;
 }
+/* ======== MATERIAL ICONS – SIDEBAR ======== */
+.material-icons {
+  font-size: 20px;
+  color: #5f6368;
+}
+
+/* Justera ikoner i nav */
+.nav-item {
+  gap: 12px;
+}
+
+/* Justera ikoner i sökknapp */
+.sidebar-search-btn {
+  gap: 10px;
+}
+
+/* Justera ikoner i "Nytt"-knapp */
+.new-btn {
+  gap: 10px;
+
+  .material-icons {
+    font-size: 22px;
+    color: #1a73e8;
+  }
+}
+
+/* Färga ikoner när aktiv (Drive-känsla) */
+.nav-item.active .material-icons,
+.sidebar-search-btn.active .material-icons {
+  color: #174ea6;
+}
+
